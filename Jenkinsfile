@@ -4,9 +4,11 @@ node {
     def buildInfo
     
     stage ('Artifactory configuration') {
-        String remoteName = conanClient.remote.add server: server, repo: "conan-local"
-        buildInfo = Artifactory.newBuildInfo()
-        buildInfo.project = 'x02'
+        withEnv(['CONAN_REVISIONS_ENABLED=1']) {
+            String remoteName = conanClient.remote.add server: server, repo: "conan-local"
+            buildInfo = Artifactory.newBuildInfo()
+            buildInfo.project = 'x02'
+        }
     }
     
     stage ('Git Clone') {
