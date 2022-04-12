@@ -14,7 +14,9 @@ node {
     }
     
     stage ('Conan install') {
-        buildInfo = conanClient.run command: "install --build missing", buildInfo: buildInfo
+        withEnv(['CONAN_REVISIONS_ENABLED=1']) {
+            buildInfo = conanClient.run command: "install --build missing", buildInfo: buildInfo
+        }
     }
 
     stage ('Publish build info') {
