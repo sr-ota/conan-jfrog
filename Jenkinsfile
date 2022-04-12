@@ -12,7 +12,7 @@ node {
     }
     
     stage ('Git Clone') {
-        git url: 'https://github.com/sr-ota/jfrog_py_example', branch: 'main'
+        git url: 'https://github.com/sr-ota/conan-jfrog', branch: 'main'
     }
     
     stage ('Conan install') {
